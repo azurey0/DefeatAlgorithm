@@ -1,0 +1,27 @@
+class Solution(object):
+    def generate(self, numRows):
+        """
+        :type numRows: int
+        :rtype: List[List[int]]
+        """
+        if numRows <= 0:
+            return [[]]
+        res = []
+        for i in range(numRows):
+            arr = [1]
+            j = 0
+            if i == 0:
+                res.append(arr)
+            elif i == 1:
+                arr.append(1)
+                res.append(arr)
+            else:
+                while j <= i - 2:
+                    temp = res[i - 1][j] + res[i - 1][j + 1]
+                    arr.append(temp)
+                    j += 1
+                arr.append(1)
+                res.append(arr)
+        return res
+ # O(n^2)   
+ # https://leetcode.com/problems/pascals-triangle/
